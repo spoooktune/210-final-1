@@ -2,6 +2,7 @@
 #include <map>
 #include <fstream>
 #include <vector>
+#include <random>
 
 using namespace std;
 
@@ -39,7 +40,7 @@ int main(){
 
     // Milestone 2
     int busiest_count = 0; 
-    vector<string> busiest_airports; 
+    vector<pair<string, int>> airport_list; 
     // Milestone 1
     for (auto &pair : airport_traffic){
         cout << pair.first << " " << pair.second << endl;
@@ -52,13 +53,22 @@ int main(){
     // Milestone 2
     for (auto &pair : airport_traffic){
         if (pair.second == busiest_count){
-            busiest_airports.push_back(pair.first);
+            airport_list.push_back(pair);
         }
     }
     cout << "Busiest airport(s) with count " << busiest_count << ": " << endl;
-    for (string p : busiest_airports){
-        cout << p << " " << busiest_count << endl;
+    for (pair p : airport_list){
+        cout << p.first << " " << p.second << endl;
     }
 
+    
+    int r_min = (rand() % busiest_count) + 1;
+    int r_max = (rand() % busiest_count) + r_min;
+    cout << "Airports with traffic in range [" << r_min << ", " << r_max << "]: " << endl;
+    for (auto &pair : airport_traffic){
+        if (pair.second >= r_min && pair.second <= r_max){
+
+        }
+    }
     return 0;
 }
