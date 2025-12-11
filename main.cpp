@@ -6,7 +6,12 @@
 
 using namespace std;
 
+void get_flights_range(map<string, int> flights, int min, int max){
+    // put func code here
+}
+
 int main(){
+    srand(time(0));
     map<string, int> airport_traffic;
     fstream flight_data;
     // Milestone 1
@@ -60,15 +65,22 @@ int main(){
     for (pair p : airport_list){
         cout << p.first << " " << p.second << endl;
     }
+    cout << endl;
 
-    
-    int r_min = (rand() % busiest_count) + 1;
-    int r_max = (rand() % busiest_count) + r_min;
-    cout << "Airports with traffic in range [" << r_min << ", " << r_max << "]: " << endl;
-    for (auto &pair : airport_traffic){
-        if (pair.second >= r_min && pair.second <= r_max){
-
+    for (int i = 0; i < 3; i++){
+        airport_list.clear();
+        int r_min = (rand() % (busiest_count-3)) + 1;
+        int r_max = r_min + 5;
+        for (auto &pair : airport_traffic){
+            if (pair.second >= r_min && pair.second <= r_max){
+                airport_list.push_back(pair);
+            }
         }
+        cout << "Airports with traffic in range [" << r_min << ", " << r_max << "]: " << endl;
+        for (pair p : airport_list){
+            cout << p.first << " " << p.second << endl;
+        }
+        cout << endl;
     }
     return 0;
 }
