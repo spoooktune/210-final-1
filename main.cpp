@@ -1,6 +1,7 @@
 #include <iostream>
 #include <map>
 #include <fstream>
+#include <vector>
 
 using namespace std;
 
@@ -36,9 +37,17 @@ int main(){
         }
     }
 
+    int busiest_count = 0;
+    vector<string> busiest_airports;
     // Milestone 1
     for (auto &pair : airport_traffic){
         cout << pair.first << " " << pair.second << endl;
+        if (pair.second > busiest_count){
+            busiest_count = pair.second;
+        }
+    }
+    for (auto &pair : airport_traffic){
+        // add all airports with busiest count to vector
     }
     return 0;
 }
