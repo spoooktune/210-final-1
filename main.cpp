@@ -37,17 +37,28 @@ int main(){
         }
     }
 
-    int busiest_count = 0;
-    vector<string> busiest_airports;
+    // Milestone 2
+    int busiest_count = 0; 
+    vector<string> busiest_airports; 
     // Milestone 1
     for (auto &pair : airport_traffic){
         cout << pair.first << " " << pair.second << endl;
         if (pair.second > busiest_count){
-            busiest_count = pair.second;
+            busiest_count = pair.second; // Milestone 2
         }
     }
+    cout << endl;
+
+    // Milestone 2
     for (auto &pair : airport_traffic){
-        // add all airports with busiest count to vector
+        if (pair.second == busiest_count){
+            busiest_airports.push_back(pair.first);
+        }
     }
+    cout << "Busiest airport(s) with count " << busiest_count << ": " << endl;
+    for (string p : busiest_airports){
+        cout << p << " " << busiest_count << endl;
+    }
+
     return 0;
 }
