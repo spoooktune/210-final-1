@@ -7,7 +7,17 @@
 using namespace std;
 
 void get_flights_range(map<string, int> flights, int min, int max){
-    // put func code here
+    vector<pair<string, int>> list;
+    for (auto &pair : flights){
+            if (pair.second >= min && pair.second <= max){
+                list.push_back(pair);
+            }
+        }
+        cout << "Airports with traffic in range [" << min << ", " << max << "]: " << endl;
+        for (pair p : list){
+            cout << p.first << " " << p.second << endl;
+        }
+        cout << endl;
 }
 
 int main(){
@@ -71,16 +81,7 @@ int main(){
         airport_list.clear();
         int r_min = (rand() % (busiest_count-3)) + 1;
         int r_max = r_min + 5;
-        for (auto &pair : airport_traffic){
-            if (pair.second >= r_min && pair.second <= r_max){
-                airport_list.push_back(pair);
-            }
-        }
-        cout << "Airports with traffic in range [" << r_min << ", " << r_max << "]: " << endl;
-        for (pair p : airport_list){
-            cout << p.first << " " << p.second << endl;
-        }
-        cout << endl;
+        get_flights_range(airport_traffic, r_min, r_max);
     }
     return 0;
 }
