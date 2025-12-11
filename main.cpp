@@ -6,6 +6,7 @@
 
 using namespace std;
 
+// Milestone 3
 void get_flights_range(map<string, int> flights, int min, int max){
     vector<pair<string, int>> list;
     for (auto &pair : flights){
@@ -15,7 +16,7 @@ void get_flights_range(map<string, int> flights, int min, int max){
         }
         cout << "Airports with traffic in range [" << min << ", " << max << "]: " << endl;
         for (pair p : list){
-            cout << p.first << " " << p.second << endl;
+            cout << p.first << " - " << p.second << endl;
         }
         cout << endl;
 }
@@ -57,8 +58,9 @@ int main(){
     int busiest_count = 0; 
     vector<pair<string, int>> airport_list; 
     // Milestone 1
+    cout << "Airport Traffic Counts:" << endl;
     for (auto &pair : airport_traffic){
-        cout << pair.first << " " << pair.second << endl;
+        cout << pair.first << " - " << pair.second << endl;
         if (pair.second > busiest_count){
             busiest_count = pair.second; // Milestone 2
         }
@@ -73,12 +75,12 @@ int main(){
     }
     cout << "Busiest airport(s) with count " << busiest_count << ": " << endl;
     for (pair p : airport_list){
-        cout << p.first << " " << p.second << endl;
+        cout << p.first << " - " << p.second << endl;
     }
     cout << endl;
 
+    // Milestone 3
     for (int i = 0; i < 3; i++){
-        airport_list.clear();
         int r_min = (rand() % (busiest_count-3)) + 1;
         int r_max = r_min + 5;
         get_flights_range(airport_traffic, r_min, r_max);
