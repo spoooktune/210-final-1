@@ -12,12 +12,31 @@ int main(){
         cout << "Unable to open file" << endl;
     }
     else{
-    while(!flight_data.eof())
-        string airport;
-        flight_data >> airport;
-        if (airport_traffic.empty()){
-            // add new airport
+    string airport;
+        while(flight_data >> airport){
+            bool counter_up = false;
+            flight_data >> airport;
+            if (!airport_traffic.empty()){
+                for (auto &pair : airport_traffic){
+                    if (pair.first == airport){
+                        pair.second++;
+                        //int* num_flights = &pair.second;
+                        //*num_flights++;
+                        counter_up = true;
+                    }
+                }
+                if (!counter_up){
+                    airport_traffic.insert(make_pair(airport, 1));
+                }
+            }
+            else{
+                airport_traffic.insert(make_pair(airport, 1));
+            }
         }
+    }
+
+    for (auto &pair : airport_traffic){
+        cout << pair.first << " " << pair.second << endl;
     }
     return 0;
 }
